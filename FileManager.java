@@ -4,6 +4,7 @@ import java.io.FileInputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Locale;
 
 public class FileManager {
     public static FileManager instance = new FileManager();
@@ -18,7 +19,7 @@ public class FileManager {
         BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(fileName)));
         String line = "";
         while((line = br.readLine()) != null){
-            content += line;
+            content += line + " ";
         }
         br.close();
         return content;
@@ -30,7 +31,7 @@ public class FileManager {
         long startTime = System.currentTimeMillis();
         for(String fileName : fileNames){
             try{
-                content += readAllLines(fileName);
+                content += readAllLines(fileName).toLowerCase(new Locale("tr-TR"));
                 i += 1;
             }
             catch(Exception ex){

@@ -1,5 +1,5 @@
 import java.util.Iterator;
-import java.util.TreeMap;
+import java.util.List;
 import java.util.Map.Entry;
 
 public class UIController {
@@ -11,11 +11,11 @@ public class UIController {
 
     }
 
-    public void printTable(TreeMap<String, Integer> map1, TreeMap<String, Integer> map2, TreeMap<String, Integer> map3){
-
-        Iterator<Entry<String, Integer>> map1_it = map1.entrySet().iterator();
-        Iterator<Entry<String, Integer>> map2_it = map2.entrySet().iterator();
-        Iterator<Entry<String, Integer>> map3_it = map3.entrySet().iterator();
+    public void printTable(List<Entry<String, Integer>> map1, List<Entry<String, Integer>> map2, List<Entry<String, Integer>> map3){
+    
+        Iterator<Entry<String, Integer>> map1_it = map1.iterator();
+        Iterator<Entry<String, Integer>> map2_it = map2.iterator();
+        Iterator<Entry<String, Integer>> map3_it = map3.iterator();
         System.out.println("-----------------------------------------------------------------------------------------------------------------------");
         System.out.println(String.format("\n%6s   %-14s%14s       %-14s%14s       %-19s%19s", " ", "1-Gram", "Frequency", "2-Gram", "Frequency", "3-Gram", "Frequency"));
         System.out.println("-----------------------------------------------------------------------------------------------------------------------");

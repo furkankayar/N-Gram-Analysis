@@ -1,5 +1,10 @@
+import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.TreeMap;
+import java.util.Map.Entry;
 
 public class NGramAnalyzer {
     private static NGramAnalyzer instance = new NGramAnalyzer();
@@ -7,12 +12,12 @@ public class NGramAnalyzer {
     private NGramAnalyzer(){
     }
 
-    public TreeMap<String, Integer> analyze(int n, String str){
+    public List<Entry<String, Integer>> analyze(int n, String str){
         System.out.print("Generating " + n + "-gram .... ");
         long startTime = System.currentTimeMillis();
         String[] words = str.split(" ");
-        TreeMap<String, Integer> n_grams = new TreeMap<String, Integer>(String.CASE_INSENSITIVE_ORDER);
-
+        HashMap<String, Integer> n_grams = new HashMap<String, Integer>();
+        
         for(int i = n-1; i < words.length ; i++){
             String n_gram = "";
             for(int k = i; k > i-n ; k--){
@@ -20,15 +25,25 @@ public class NGramAnalyzer {
             }
         
             if(!n_grams.containsKey(n_gram)){
-                n_grams.put(n_gram, 0);
+                n_grams.put(n_gram, 1);
             }
-            int val = n_grams.get(n_gram);
-            n_grams.put(n_gram, val + 1); 
+            else{
+                int val = n_grams.get(n_gram);
+                n_grams.put(n_gram, val + 1); 
+            }   
         }
         System.out.print("Sorting .... ");
-        n_grams = sortByValues(n_grams);
+        List<Entry<String, Integer>> n_gram_list = new LinkedList<Entry<String, Integer>>(n_grams.entrySet());  
+        Collections.sort(n_gram_list, new Comparator<Entry<String, Integer>>(){
+
+			@Override
+			public int compare(Entry<String, Integer> o1, Entry<String, Integer> o2) {
+				return o2.getValue().compareTo(o1.getValue());
+			}
+            
+        });
         System.out.println("Completed in " + (System.currentTimeMillis() - startTime) + " milliseconds.");
-        return n_grams;
+        return n_gram_list;
     }
 
     public TreeMap<String, Integer> sortByValues(TreeMap<String, Integer> treeMap) {
@@ -51,3 +66,4 @@ public class NGramAnalyzer {
         return instance; 
     }
 }
+
