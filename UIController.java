@@ -34,8 +34,10 @@ public class UIController {
             ));
             
         }
-
-        System.out.println("-----------------------------------------------------------------------------------------------------------------------\n");
+        System.out.println("\nTotal number of 1-grams: " + map1.size() + "\t Total frequency of 1-grams: " + map1.stream().mapToInt((a) -> a.getValue()).sum());
+        System.out.println("Total number of 2-grams: " + map2.size() + "\t Total frequency of 2-grams: " + map2.stream().mapToInt((a) -> a.getValue()).sum());
+        System.out.println("Total number of 3-grams: " + map3.size() + "\t Total frequency of 3-grams: " + map3.stream().mapToInt((a) -> a.getValue()).sum());
+        System.out.println("\n-----------------------------------------------------------------------------------------------------------------------\n");
     }
 
     public static UIController getInstance(){

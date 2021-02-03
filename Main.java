@@ -20,7 +20,7 @@ public class Main {
             "Novel-Samples/UNUTULMUÞ DÝYARLAR.txt"});
         if(allFiles.length() > 0){
             System.out.println("Removing punctuations and multiple spaces...\n-----------------------------------------------------------------------------------------------------------------------");
-            allFiles = allFiles.replaceAll("\\p{Punct}", "").replaceAll("( )+", " ");    
+            allFiles = allFiles.replaceAll("['\u0307’”“—]", "").replaceAll("[(),.?!:\"»«\t*;]", " ").replaceAll("-", " ").replaceAll("( )+", " ");    
             List<Entry<String, Integer>> one_gram = nga.analyze(1, allFiles);
             List<Entry<String, Integer>> two_gram = nga.analyze(2, allFiles);
             List<Entry<String, Integer>> three_gram = nga.analyze(3, allFiles);

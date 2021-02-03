@@ -3,7 +3,6 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.TreeMap;
 import java.util.Map.Entry;
 
 public class NGramAnalyzer {
@@ -44,22 +43,6 @@ public class NGramAnalyzer {
         });
         System.out.println("Completed in " + (System.currentTimeMillis() - startTime) + " milliseconds.");
         return n_gram_list;
-    }
-
-    public TreeMap<String, Integer> sortByValues(TreeMap<String, Integer> treeMap) {
-        Comparator<String> valueComparator = new Comparator<String>() {
-            public int compare(String k1, String k2) {
-            int compare = treeMap.get(k2).compareTo(treeMap.get(k1));
-            if (compare == 0) 
-                return 1;
-            else 
-                return compare;
-            }
-        };
- 
-        TreeMap<String, Integer> sortedByValues = new TreeMap<String, Integer>(valueComparator);
-        sortedByValues.putAll(treeMap);
-        return sortedByValues;
     }
 
     public static NGramAnalyzer getInstance(){
